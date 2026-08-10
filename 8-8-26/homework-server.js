@@ -12,6 +12,18 @@ const server = http.createServer((req, res) => {
     } else if (req.url === "/nodejs") {
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
         res.end("Node.js là runtime environment bên ngoài trình duyệt, được xây dựng trên nền tảng V8 JavaScript Engine của Google Chrome");
+        
+    } else if (req.url === "/api/server-info") {
+        res.writeHead(200, { "Content-Type": "application/json" });
+        const info = {runtime: "Node.js",
+                    language: "JavaScript",
+                    type: "server-side" };
+        res.end(JSON.stringify(info));
+        
+    } else if (req.url === "/about") {
+        res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+        res.end(`<h1>About Server-side Development</h1> 
+            <p>Server-side programming processes logic on the server.</p>`);
     } else {
         res.writeHead(404, { "Content-Type": "text/plain" });
         res.end("404 Not Found");
